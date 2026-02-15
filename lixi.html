@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lì Xì May Mắn</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: gold;
+
+    background:
+        radial-gradient(circle at top, rgba(255,0,0,0.9), #8b0000 60%, #ffffff 120%),
+        url("https://www.transparenttextures.com/patterns/arabesque.png");
+    background-blend-mode: overlay;
+}
+
+/* ================= CÀNH HOA ================= */
+
+.branch {
+    position: fixed;
+    top: -40px;
+    width: 300px;
+    height: 420px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.branch.left {
+    left: -80px;
+    transform: rotate(-25deg);
+}
+
+.branch.right {
+    right: -80px;
+    transform: rotate(25deg);
+}
+
+.main-branch {
+    position: absolute;
+    width: 12px;
+    height: 420px;
+    background: linear-gradient(to bottom, #3b1f1f, #6b3a3a);
+    border-radius: 20px;
+    left: 140px;
+    transform: rotate(8deg);
+}
+
+.sub-branch {
+    position: absolute;
+    width: 8px;
+    height: 120px;
+    background: linear-gradient(to bottom, #3b1f1f, #6b3a3a);
+    border-radius: 20px;
+}
+
+.flower-branch {
+    position: absolute;
+    font-size: 26px;
+    animation: sway 4s ease-in-out infinite alternate;
+}
+
+@keyframes sway {
+    from { transform: rotate(-3deg); }
+    to { transform: rotate(3deg); }
+}
+
+/* ================= TIÊU ĐỀ ================= */
+
+h1 {
+    margin-top: 40px;
+    font-size: 70px;
+    font-family: 'Great Vibes', cursive;
+    background: linear-gradient(to bottom, #fff5b7, #ffd700, #b8860b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow:
+        3px 3px 5px rgba(0,0,0,0.6),
+        0 0 15px rgba(255,215,0,0.9),
+        0 0 30px rgba(255,215,0,0.7);
+    position: relative;
+    z-index: 2;
+}
+
+/* ================= CÂU ĐỐI ================= */
+
+.couple {
+    position: fixed;
+    top: 180px;
+    width: 100px;
+    height: 360px;
+    background: linear-gradient(to bottom, #cc0000, #990000);
+    border: 4px solid gold;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.left-couple { left: 40px; }
+.right-couple { right: 40px; }
+
+.couple span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    background: linear-gradient(to bottom, #fff5b7, #ffd700, #b8860b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ================= BAO LÌ XÌ ================= */
+
+.container {
+    margin-top: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.envelope {
+    width: 90px;
+    height: 150px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    cursor: pointer;
+    font-size: 35px;
+    transition: 0.3s;
+    color: gold;
+    font-weight: bold;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+}
+
+.envelope:hover {
+    transform: scale(1.1);
+}
+
+.style1 { background: linear-gradient(145deg,#ff0000,#cc0000); }
+.style2 { background: linear-gradient(145deg,#cc0000,#990000); border: 3px solid gold; }
+.style3 { background: linear-gradient(145deg,#ff1a1a,#b30000); }
+.style4 { background: linear-gradient(145deg,#b30000,#800000); }
+.style5 { background: linear-gradient(145deg,#ff0000,#990000); }
+.style6 { background: linear-gradient(145deg,#990000,#660000); }
+.style7 { background: linear-gradient(145deg,#cc0000,#ff3300); }
+.style8 { background: linear-gradient(145deg,#b30000,#ff0000); }
+.style9 { background: linear-gradient(145deg,#ff1a1a,#cc0000); }
+.style10{ background: linear-gradient(145deg,#800000,#cc0000); }
+
+.result {
+    font-size: 30px;
+    margin-top: 30px;
+    text-shadow: 2px 2px 5px black;
+    position: relative;
+    z-index: 2;
+}
+
+/* ================= HOA RƠI ================= */
+
+.fall {
+    position: fixed;
+    top: -50px;
+    animation: fall linear infinite;
+    z-index: 3;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-50px) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CÀNH TRÁI -->
+<div class="branch left">
+    <div class="main-branch"></div>
+    <div class="sub-branch" style="top:120px; left:110px; transform: rotate(-40deg);"></div>
+    <div class="sub-branch" style="top:220px; left:170px; transform: rotate(30deg);"></div>
+
+    <div class="flower-branch" style="top:90px; left:120px;">🌸</div>
+    <div class="flower-branch" style="top:140px; left:80px;">🌸</div>
+    <div class="flower-branch" style="top:200px; left:170px;">🌸</div>
+    <div class="flower-branch" style="top:260px; left:130px;">🌸</div>
+    <div class="flower-branch" style="top:310px; left:190px;">🌸</div>
+</div>
+
+<!-- CÀNH PHẢI -->
+<div class="branch right">
+    <div class="main-branch"></div>
+    <div class="sub-branch" style="top:120px; left:170px; transform: rotate(40deg);"></div>
+    <div class="sub-branch" style="top:220px; left:110px; transform: rotate(-30deg);"></div>
+
+    <div class="flower-branch" style="top:90px; left:160px;">🌼</div>
+    <div class="flower-branch" style="top:140px; left:210px;">🌼</div>
+    <div class="flower-branch" style="top:200px; left:100px;">🌼</div>
+    <div class="flower-branch" style="top:260px; left:150px;">🌼</div>
+    <div class="flower-branch" style="top:310px; left:90px;">🌼</div>
+</div>
+
+<!-- Câu đối -->
+<div class="couple left-couple">
+    <span>Lộc<br>Xuân<br>Vạn<br>Phúc</span>
+</div>
+
+<div class="couple right-couple">
+    <span>An<br>Khang<br>Thịnh<br>Vượng</span>
+</div>
+
+<h1>Lì Xì May Mắn</h1>
+
+<div class="container" id="envelopes"></div>
+<div class="result" id="result"></div>
+
+<script>
+const moneyList = ["10K", "20K", "50K", "100K", "200K", "500K"];
+const container = document.getElementById("envelopes");
+const result = document.getElementById("result");
+const icons = ["🧧","🐎","💰","🏮","🎉","✨","🌸","💎","🔥","🎊"];
+
+for (let i = 0; i < 10; i++) {
+    const envelope = document.createElement("div");
+    envelope.className = "envelope style" + (i+1);
+    envelope.innerHTML = icons[i];
+
+    envelope.onclick = function() {
+        const randomMoney = moneyList[Math.floor(Math.random() * moneyList.length)];
+        result.innerHTML = "🎉 Bạn nhận được: " + randomMoney + " 🎉";
+        envelope.style.background = "gold";
+        envelope.style.color = "red";
+        envelope.innerHTML = randomMoney;
+        envelope.style.pointerEvents = "none";
+    };
+
+    container.appendChild(envelope);
+}
+
+function createFlower() {
+    const flower = document.createElement("div");
+    flower.className = "fall";
+    flower.style.left = Math.random() * window.innerWidth + "px";
+    flower.style.animationDuration = (4 + Math.random() * 4) + "s";
+    flower.innerHTML = "🌸";
+    flower.style.fontSize = (20 + Math.random() * 20) + "px";
+    document.body.appendChild(flower);
+    setTimeout(() => { flower.remove(); }, 8000);
+}
+setInterval(createFlower, 300);
+</script>
+
+</body>
+</html>
