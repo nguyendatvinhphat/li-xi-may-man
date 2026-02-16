@@ -1,265 +1,294 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lì Xì May Mắn</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lì Xì 2026</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            transition: background 0.8s ease-in-out;
+            background: url("background-tet-voi-long-den (6).jpg") no-repeat center center;
+            background-size: cover;
+        }
 
-<style>
-body {
-    margin: 0;
-    overflow-x: hidden;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: gold;
+        /* Nội dung giữa màn hình */
+        .content {
+            text-align: center;
+            color: #ffd700;
+            z-index: 5;
+        }
 
-    background:
-        radial-gradient(circle at top, rgba(255,0,0,0.9), #8b0000 60%, #ffffff 120%),
-        url("https://www.transparenttextures.com/patterns/arabesque.png");
-    background-blend-mode: overlay;
-}
+        .message {
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px black;
+            transition: opacity 1s ease;
+        }
 
-/* ================= CÀNH HOA ================= */
+        .next-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            animation: blink 1s infinite;
+        }
 
-.branch {
-    position: fixed;
-    top: -40px;
-    width: 300px;
-    height: 420px;
-    pointer-events: none;
-    z-index: 1;
-}
+        @keyframes blink {
+            0% {
+                background: linear-gradient(145deg, #ffd700, #ffb300);
+                color: black;
+            }
 
-.branch.left {
-    left: -80px;
-    transform: rotate(-25deg);
-}
+            50% {
+                background: linear-gradient(145deg, #ff0000, #b30000);
+                color: yellow;
+            }
 
-.branch.right {
-    right: -80px;
-    transform: rotate(25deg);
-}
+            100% {
+                background: linear-gradient(145deg, #ffd700, #ffb300);
+                color: black;
+            }
+        }
 
-.main-branch {
-    position: absolute;
-    width: 12px;
-    height: 420px;
-    background: linear-gradient(to bottom, #3b1f1f, #6b3a3a);
-    border-radius: 20px;
-    left: 140px;
-    transform: rotate(8deg);
-}
+        /* Hoa rơi */
+        .fall-flower {
+            position: fixed;
+            top: -50px;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
 
-.sub-branch {
-    position: absolute;
-    width: 8px;
-    height: 120px;
-    background: linear-gradient(to bottom, #3b1f1f, #6b3a3a);
-    border-radius: 20px;
-}
+        @keyframes fall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+            }
 
-.flower-branch {
-    position: absolute;
-    font-size: 26px;
-    animation: sway 4s ease-in-out infinite alternate;
-}
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
 
-@keyframes sway {
-    from { transform: rotate(-3deg); }
-    to { transform: rotate(3deg); }
-}
+        /* Bao lì xì */
+        .lixi {
+            position: fixed;
+            top: -150px;
+            animation: lixiFall linear forwards;
+            z-index: 3;
+            cursor: pointer;
+        }
 
-/* ================= TIÊU ĐỀ ================= */
+        @keyframes lixiFall {
+            0% {
+                transform: translateY(-150px) rotate(0deg);
+            }
 
-h1 {
-    margin-top: 40px;
-    font-size: 70px;
-    font-family: 'Great Vibes', cursive;
-    background: linear-gradient(to bottom, #fff5b7, #ffd700, #b8860b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow:
-        3px 3px 5px rgba(0,0,0,0.6),
-        0 0 15px rgba(255,215,0,0.9),
-        0 0 30px rgba(255,215,0,0.7);
-    position: relative;
-    z-index: 2;
-}
+            100% {
+                transform: translateY(110vh) rotate(180deg);
+            }
+        }
 
-/* ================= CÂU ĐỐI ================= */
+        /* Popup tiền */
+        .money-popup {
+            position: fixed;
+            font-size: 40px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 8px #000;
+            animation: moneyShow 1.5s ease forwards;
+            z-index: 10;
+        }
 
-.couple {
-    position: fixed;
-    top: 180px;
-    width: 100px;
-    height: 360px;
-    background: linear-gradient(to bottom, #cc0000, #990000);
-    border: 4px solid gold;
-    border-radius: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-}
+        @keyframes moneyShow {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
 
-.left-couple { left: 40px; }
-.right-couple { right: 40px; }
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
 
-.couple span {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Great Vibes', cursive;
-    font-size: 32px;
-    background: linear-gradient(to bottom, #fff5b7, #ffd700, #b8860b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
 
-/* ================= BAO LÌ XÌ ================= */
+        /* Hoa góc cố định */
+        .corner-flower {
+            position: fixed;
+            top: 0;
+            width: 320px;
+            z-index: 2;
+            display: none;
+            pointer-events: none;
+        }
 
-.container {
-    margin-top: 80px;
-    position: relative;
-    z-index: 2;
-}
+        .left-flower {
+            left: 0;
+        }
 
-.envelope {
-    width: 90px;
-    height: 150px;
-    border-radius: 15px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px;
-    cursor: pointer;
-    font-size: 35px;
-    transition: 0.3s;
-    color: gold;
-    font-weight: bold;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
-}
-
-.envelope:hover {
-    transform: scale(1.1);
-}
-
-.style1 { background: linear-gradient(145deg,#ff0000,#cc0000); }
-.style2 { background: linear-gradient(145deg,#cc0000,#990000); border: 3px solid gold; }
-.style3 { background: linear-gradient(145deg,#ff1a1a,#b30000); }
-.style4 { background: linear-gradient(145deg,#b30000,#800000); }
-.style5 { background: linear-gradient(145deg,#ff0000,#990000); }
-.style6 { background: linear-gradient(145deg,#990000,#660000); }
-.style7 { background: linear-gradient(145deg,#cc0000,#ff3300); }
-.style8 { background: linear-gradient(145deg,#b30000,#ff0000); }
-.style9 { background: linear-gradient(145deg,#ff1a1a,#cc0000); }
-.style10{ background: linear-gradient(145deg,#800000,#cc0000); }
-
-.result {
-    font-size: 30px;
-    margin-top: 30px;
-    text-shadow: 2px 2px 5px black;
-    position: relative;
-    z-index: 2;
-}
-
-/* ================= HOA RƠI ================= */
-
-.fall {
-    position: fixed;
-    top: -50px;
-    animation: fall linear infinite;
-    z-index: 3;
-}
-
-@keyframes fall {
-    0% { transform: translateY(-50px) rotate(0deg); }
-    100% { transform: translateY(100vh) rotate(360deg); }
-}
-</style>
+        .right-flower {
+            right: 0;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- CÀNH TRÁI -->
-<div class="branch left">
-    <div class="main-branch"></div>
-    <div class="sub-branch" style="top:120px; left:110px; transform: rotate(-40deg);"></div>
-    <div class="sub-branch" style="top:220px; left:170px; transform: rotate(30deg);"></div>
+    <div class="content">
+        <div class="message" id="message">
 
-    <div class="flower-branch" style="top:90px; left:120px;">🌸</div>
-    <div class="flower-branch" style="top:140px; left:80px;">🌸</div>
-    <div class="flower-branch" style="top:200px; left:170px;">🌸</div>
-    <div class="flower-branch" style="top:260px; left:130px;">🌸</div>
-    <div class="flower-branch" style="top:310px; left:190px;">🌸</div>
+    <div class="title">
+        🌸 CHÚC MỪNG NĂM MỚI 2026 🌸
+    </div>
+
+    <div class="wish">
+        Chúc bạn và gia đình một năm mới<br>
+        tràn đầy sức khỏe, hạnh phúc và thành công.<br>
+        Mong may mắn, tài lộc và niềm vui<br>
+        luôn đồng hành suốt năm mới.<br>
+        An khang thịnh vượng – Vạn sự như ý!
+    </div>
+
+    <div class="next-text">
+         
+         
+    </div>
+
 </div>
 
-<!-- CÀNH PHẢI -->
-<div class="branch right">
-    <div class="main-branch"></div>
-    <div class="sub-branch" style="top:120px; left:170px; transform: rotate(40deg);"></div>
-    <div class="sub-branch" style="top:220px; left:110px; transform: rotate(-30deg);"></div>
 
-    <div class="flower-branch" style="top:90px; left:160px;">🌼</div>
-    <div class="flower-branch" style="top:140px; left:210px;">🌼</div>
-    <div class="flower-branch" style="top:200px; left:100px;">🌼</div>
-    <div class="flower-branch" style="top:260px; left:150px;">🌼</div>
-    <div class="flower-branch" style="top:310px; left:90px;">🌼</div>
-</div>
 
-<!-- Câu đối -->
-<div class="couple left-couple">
-    <span>Lộc<br>Xuân<br>Vạn<br>Phúc</span>
-</div>
+        <button class="next-btn" id="nextBtn" onclick="nextPage()">Tiếp Theo</button>
+    </div>
 
-<div class="couple right-couple">
-    <span>An<br>Khang<br>Thịnh<br>Vượng</span>
-</div>
+    <!-- Hoa đào bên trái -->
+    <img src="pngtree-peach-flower-blossom-with-two-lanterns-png-image_2892256.png" id="hoaDao"
+        class="corner-flower left-flower">
 
-<h1>Lì Xì May Mắn</h1>
+    <!-- Hoa mai bên phải -->
+    <img src="pngtree-awesome-hoa-mai-apricot-blossom-vector-png-image_2939218.png" id="hoaMai"
+        class="corner-flower right-flower">
 
-<div class="container" id="envelopes"></div>
-<div class="result" id="result"></div>
+    <script>
 
-<script>
-const moneyList = ["10K", "20K", "50K", "100K", "200K", "500K"];
-const container = document.getElementById("envelopes");
-const result = document.getElementById("result");
-const icons = ["🧧","🐎","💰","🏮","🎉","✨","🌸","💎","🔥","🎊"];
+        let page = 1;
 
-for (let i = 0; i < 10; i++) {
-    const envelope = document.createElement("div");
-    envelope.className = "envelope style" + (i+1);
-    envelope.innerHTML = icons[i];
+        /* ===== CHUYỂN TRANG ===== */
 
-    envelope.onclick = function() {
-        const randomMoney = moneyList[Math.floor(Math.random() * moneyList.length)];
-        result.innerHTML = "🎉 Bạn nhận được: " + randomMoney + " 🎉";
-        envelope.style.background = "gold";
-        envelope.style.color = "red";
-        envelope.innerHTML = randomMoney;
-        envelope.style.pointerEvents = "none";
-    };
+        function nextPage() {
+            if (page === 1) {
 
-    container.appendChild(envelope);
-}
+                document.body.style.background =
+                    'url("image48_202601052335041844.jpg") no-repeat center center';
+                document.body.style.backgroundSize = "cover";
 
-function createFlower() {
-    const flower = document.createElement("div");
-    flower.className = "fall";
-    flower.style.left = Math.random() * window.innerWidth + "px";
-    flower.style.animationDuration = (4 + Math.random() * 4) + "s";
-    flower.innerHTML = "🌸";
-    flower.style.fontSize = (20 + Math.random() * 20) + "px";
-    document.body.appendChild(flower);
-    setTimeout(() => { flower.remove(); }, 8000);
-}
-setInterval(createFlower, 300);
-</script>
+                const msg = document.getElementById("message");
+                msg.innerHTML = "💰 Bấm vào bao lì xì để mở 💰";
+
+                // hiện hoa góc
+                document.getElementById("hoaDao").style.display = "block";
+                document.getElementById("hoaMai").style.display = "block";
+
+                // 3 giây sau mờ dần
+                setTimeout(() => {
+                    msg.style.opacity = "0";
+                }, 3000);
+
+                document.getElementById("nextBtn").style.display = "none";
+
+                startLixi();
+                page = 2;
+            }
+        }
+
+        /* ===== HOA RƠI ===== */
+
+        const flowers = [
+            "pngtree-soft-yellow-apricot-flower-png-image_4183361.png",
+            "images__2.png"
+        ];
+
+        function createFlower() {
+            const flower = document.createElement("img");
+            flower.src = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.className = "fall-flower";
+
+            flower.style.left = Math.random() * window.innerWidth + "px";
+            flower.style.width = (20 + Math.random() * 40) + "px";
+            flower.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+            document.body.appendChild(flower);
+            setTimeout(() => flower.remove(), 6000);
+        }
+
+        setInterval(createFlower, 500);
+
+        /* ===== BAO LÌ XÌ ===== */
+
+        const lixiImages = [
+            "Gemini_Generated_Image_4o4buk4o4buk4o4b (1).png",
+            "Gemini_Generated_Image_5qs7ib5qs7ib5qs7-removebg-preview.png",
+            "Gemini_Generated_Image_8mb1h38mb1h38mb1 (1).png",
+            "Gemini_Generated_Image_2279oc2279oc2279-removebg-preview.png",
+            "Gemini_Generated_Image_e4bq1ee4bq1ee4bq-removebg-preview.png"
+        ];
+
+        const moneyValues = ["10.000đ", "20.000đ", "50.000đ", "100.000đ", "200.000đ", "500.000đ"];
+
+        function createLixi() {
+
+            const lixi = document.createElement("img");
+            lixi.src = lixiImages[Math.floor(Math.random() * lixiImages.length)];
+            lixi.className = "lixi";
+
+            lixi.style.left = Math.random() * window.innerWidth + "px";
+            lixi.style.width = (80 + Math.random() * 80) + "px";
+            lixi.style.animationDuration = (6 + Math.random() * 4) + "s";
+
+            lixi.onclick = function () {
+
+                const money = moneyValues[Math.floor(Math.random() * moneyValues.length)];
+
+                const popup = document.createElement("div");
+                popup.className = "money-popup";
+                popup.innerHTML = "🎉 " + money + " 🎉";
+
+                popup.style.left = lixi.style.left;
+                popup.style.top = "40%";
+
+                document.body.appendChild(popup);
+                setTimeout(() => popup.remove(), 1500);
+
+                lixi.remove();
+            };
+
+            document.body.appendChild(lixi);
+            setTimeout(() => lixi.remove(), 10000);
+        }
+
+        function startLixi() {
+            setInterval(createLixi, 800);
+        }
+
+    </script>
 
 </body>
-</html>
 
+</html>
