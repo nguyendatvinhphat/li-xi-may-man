@@ -13,11 +13,11 @@ body{
     height:100vh;
     overflow:hidden;
     font-family: Arial, sans-serif;
-    background: url("background-tet-voi-long-den (6).jpg") no-repeat center center;
+    background:url("background-tet-voi-long-den (6).jpg") no-repeat center center;
     background-size:cover;
 }
 
-/* ===== KHUNG CHỮ TRUNG TÂM ===== */
+/* ===== KHUNG CHỮ ===== */
 
 .message{
     position:absolute;
@@ -29,25 +29,20 @@ body{
     max-width:750px;
     color:#ffd700;
     text-shadow:3px 3px 10px black;
-    padding:20px;
-    box-sizing:border-box;
 }
 
-/* Tiêu đề */
 .title{
-    font-size:clamp(22px,4vw,42px);
+    font-size:clamp(24px,4vw,42px);
     font-weight:bold;
     margin-bottom:20px;
 }
 
-/* Lời chúc */
 .wish{
     font-size:clamp(16px,2.5vw,24px);
     line-height:1.6;
     margin-bottom:25px;
 }
 
-/* Nút */
 .next-btn{
     padding:14px 35px;
     font-size:clamp(16px,2.5vw,24px);
@@ -90,29 +85,45 @@ body{
 }
 
 @keyframes lixiFall{
-    0%{ transform:translateY(-150px) rotate(0deg);}
-    100%{ transform:translateY(110vh) rotate(180deg);}
+    0%{ transform:translateY(-150px);}
+    100%{ transform:translateY(110vh);}
 }
 
-/* ===== HIỆN TIỀN ===== */
+/* ===== HIỆN TIỀN GIỮA MÀN HÌNH ===== */
 
-.money-popup{
+.money-screen{
     position:fixed;
-    font-size:clamp(24px,5vw,50px);
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:20;
+    display:none;
+}
+
+.money-value{
+    font-size:clamp(40px,8vw,80px);
     font-weight:bold;
-    color:#fff;
-    text-shadow:3px 3px 12px #000;
-    animation:moneyShow 1.5s ease forwards;
-    z-index:10;
+    color:#ffd700;
+    animation:glow 1s infinite alternate;
 }
 
-@keyframes moneyShow{
-    0%{ transform:scale(0.5); opacity:0;}
-    50%{ transform:scale(1.3); opacity:1;}
-    100%{ transform:scale(1); opacity:0;}
+@keyframes glow{
+    from{ text-shadow:0 0 10px #fff, 0 0 20px gold;}
+    to{ text-shadow:0 0 20px #fff, 0 0 40px gold;}
 }
 
-/* ===== HOA GÓC ===== */
+.continue-btn{
+    margin-top:30px;
+    padding:12px 30px;
+    font-size:clamp(18px,3vw,26px);
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    background:#ff0000;
+    color:white;
+    display:none;
+}
 
 .corner-flower{
     position:fixed;
@@ -120,109 +131,80 @@ body{
     width:clamp(120px,20vw,320px);
     display:none;
     z-index:2;
-    pointer-events:none;
 }
 
 .left-flower{ left:0; }
 .right-flower{ right:0; }
-
-/* ===== MOBILE FIX ===== */
-
-@media(max-width:600px){
-    .message{ width:92%; }
-}
 
 </style>
 </head>
 <body>
 
 <div class="message" id="message">
-
-    <div class="title">
-        🌸 CHÚC MỪNG NĂM MỚI 2026 🌸
-    </div>
-
+    <div class="title">🌸 CHÚC MỪNG NĂM MỚI 2026 🌸</div>
     <div class="wish">
-        Chúc bạn và gia đình một năm mới tràn đầy sức khỏe,
-        hạnh phúc và thành công.<br>
-        Mong may mắn, tài lộc và niềm vui luôn đồng hành
-        suốt năm mới.<br>
-        An khang thịnh vượng – Vạn sự như ý! 🎉✨
+        Chúc bạn và gia đình năm mới sức khỏe, hạnh phúc,
+        thành công và nhiều tài lộc. 🎉✨
     </div>
-
-    <button class="next-btn" id="nextBtn" onclick="nextPage()">
-        Nhấn Tiếp Theo để nhận lì xì 🎁
-    </button>
-
+    <button class="next-btn" onclick="nextPage()">Nhấn Tiếp Theo 🎁</button>
 </div>
 
-<!-- Hoa góc -->
+<!-- MÀN HÌNH HIỆN TIỀN -->
+<div class="money-screen" id="moneyScreen">
+    <div class="money-value" id="moneyValue"></div>
+    <button class="continue-btn" id="continueBtn" onclick="goHome()">Tiếp tục</button>
+</div>
+
+<!-- HOA GÓC -->
 <img src="pngtree-peach-flower-blossom-with-two-lanterns-png-image_2892256.png"
      class="corner-flower left-flower" id="hoaDao">
-
 <img src="pngtree-awesome-hoa-mai-apricot-blossom-vector-png-image_2939218.png"
      class="corner-flower right-flower" id="hoaMai">
 
 <script>
 
-let page = 1;
+let page=1;
+let lixiInterval;
 
 /* ===== CHUYỂN TRANG ===== */
 
 function nextPage(){
 
-    if(page === 1){
+    document.body.style.background=
+    'url("image48_202601052335041844.jpg") no-repeat center center';
+    document.body.style.backgroundSize="cover";
 
-        document.body.style.background =
-        'url("image48_202601052335041844.jpg") no-repeat center center';
-        document.body.style.backgroundSize="cover";
+    document.getElementById("message").style.display="none";
+    document.getElementById("hoaDao").style.display="block";
+    document.getElementById("hoaMai").style.display="block";
 
-        document.getElementById("hoaDao").style.display="block";
-        document.getElementById("hoaMai").style.display="block";
-
-        const msg = document.getElementById("message");
-
-        msg.innerHTML = `
-            <div class="title">💰 Bấm vào bao lì xì để mở 💰</div>
-        `;
-
-        setTimeout(()=>{
-            msg.style.opacity="0";
-        },3000);
-
-        startLixi();
-
-        page = 2;
-    }
+    startLixi();
 }
 
 /* ===== HOA RƠI ===== */
 
-const flowers = [
-    "pngtree-soft-yellow-apricot-flower-png-image_4183361.png",
-    "images__2.png"
+const flowers=[
+"pngtree-soft-yellow-apricot-flower-png-image_4183361.png",
+"images__2.png"
 ];
 
 function createFlower(){
-    const flower=document.createElement("img");
-    flower.src=flowers[Math.floor(Math.random()*flowers.length)];
-    flower.className="fall-flower";
-    flower.style.left=Math.random()*window.innerWidth+"px";
-    flower.style.width=(20+Math.random()*40)+"px";
-    flower.style.animationDuration=(4+Math.random()*4)+"s";
-    document.body.appendChild(flower);
-    setTimeout(()=>flower.remove(),6000);
+    const f=document.createElement("img");
+    f.src=flowers[Math.floor(Math.random()*flowers.length)];
+    f.className="fall-flower";
+    f.style.left=Math.random()*window.innerWidth+"px";
+    f.style.width=(20+Math.random()*40)+"px";
+    f.style.animationDuration=(4+Math.random()*4)+"s";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),6000);
 }
 setInterval(createFlower,500);
 
 /* ===== BAO LÌ XÌ ===== */
 
 const lixiImages=[
-    "Gemini_Generated_Image_4o4buk4o4buk4o4b (1).png",
-    "Gemini_Generated_Image_5qs7ib5qs7ib5qs7-removebg-preview.png",
-    "Gemini_Generated_Image_8mb1h38mb1h38mb1 (1).png",
-    "Gemini_Generated_Image_2279oc2279oc2279-removebg-preview.png",
-    "Gemini_Generated_Image_e4bq1ee4bq1ee4bq-removebg-preview.png"
+"Gemini_Generated_Image_4o4buk4o4buk4o4b (1).png",
+"Gemini_Generated_Image_5qs7ib5qs7ib5qs7-removebg-preview.png"
 ];
 
 const moneyValues=["10.000đ","20.000đ","50.000đ","100.000đ","200.000đ","500.000đ"];
@@ -238,26 +220,32 @@ function createLixi(){
 
     lixi.onclick=function(){
 
+        clearInterval(lixiInterval);
+        document.querySelectorAll(".lixi").forEach(e=>e.remove());
+
         const money=moneyValues[Math.floor(Math.random()*moneyValues.length)];
 
-        const popup=document.createElement("div");
-        popup.className="money-popup";
-        popup.innerHTML="🎉 "+money+" 🎉";
-        popup.style.left=lixi.style.left;
-        popup.style.top="40%";
+        document.getElementById("moneyValue").innerHTML="🎉 "+money+" 🎉";
+        document.getElementById("moneyScreen").style.display="block";
 
-        document.body.appendChild(popup);
-        setTimeout(()=>popup.remove(),1500);
-
-        lixi.remove();
+        setTimeout(()=>{
+            document.getElementById("continueBtn").style.display="inline-block";
+        },3000);
     };
 
     document.body.appendChild(lixi);
-    setTimeout(()=>lixi.remove(),10000);
 }
 
 function startLixi(){
-    setInterval(createLixi,800);
+    lixiInterval=setInterval(createLixi,800);
+}
+
+/* ===== QUAY VỀ TRANG ĐẦU ===== */
+
+function goHome(){
+
+    location.reload();
+
 }
 
 </script>
